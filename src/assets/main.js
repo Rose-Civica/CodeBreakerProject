@@ -14,12 +14,12 @@ function guess() {
     if(validateInput(input.value)) {
         attempt++;
     }
-    if (getResults(input)) {
+    if (getResults(input.value)) {
         setMessage('You Win! :)');
         showAnswer(true);
         showReplay();
     }
-    if (!getResults(input) && attempt >= 10) {
+    if (!getResults(input.value) && attempt >= 10) {
         setMessage('You Lose! :(');
         showAnswer(false);
         showReplay();
@@ -45,10 +45,11 @@ function setMessage(text) {
 }
 
 function validateInput(input) {
-    if (input.length != 4) {
+    if (input.length !== 4) {
         setMessage('Guesses must be exactly 4 characters long.')
         return false;
     }
+    return true;
 }
 
 function getResults(input) {
@@ -95,4 +96,3 @@ function showReplay() {
     guessingDiv.style = 'display: none';
     replayDiv.style = 'display: block';
 }
-
