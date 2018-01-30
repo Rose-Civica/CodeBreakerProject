@@ -12,7 +12,7 @@ function guess() {
         return false;
     }
     if(validateInput(input.value)) {
-        attempt+=1;
+        attempt.value++;
     }
     let check = getResults(input.value);
     if (check) {
@@ -93,6 +93,6 @@ function showReplay() {
     let guessingDiv = document.getElementById('guessing-div');
     let replayDiv = document.getElementById('replay-div');
 
-    guessingDiv.style.display='none'
+    guessingDiv.style.display = 'none';
     replayDiv.style.display= 'block';
 }
