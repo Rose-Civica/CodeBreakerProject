@@ -5,7 +5,7 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
-    if (answer.value ===''|| attempt.value=='' ){
+    if (answer.value ===''|| attempt.value==='' ){
         setHiddenFields();
     }
     if (!(validateInput(input.value))) {
@@ -55,11 +55,11 @@ function getResults(input) {
     let results = document.getElementById('results');
     let div = '<div class="row"><span class="col-md-6"> ' + input + ' </span>  <div class="col-md-6">';
     for (var i = 0; i < 4; i++) {
-        if (input.charAt(i) == answer.charAt(i)) {
+        if (input.charAt(i) === answer.value.charAt(i)) {
             div += '<span class="glyphicon glyphicon-ok"></span>';
         }       
-        else if (input.charAt(i) == answer.value.charAt((i + 1) % 4) || input.charAt(i) == answer.value.charAt((i + 2) % 4)
-            || input.charAt(i) == answer.value.charAt((i + 3) % 4)) {
+        else if (input.charAt(i) === answer.value.charAt((i + 1) % 4) || input.charAt(i) === answer.value.charAt((i + 2) % 4)
+            || input.charAt(i) === answer.value.charAt((i + 3) % 4)) {
             div += '<span class="glyphicon glyphicon-transfer"></span>';
         }
         else {
@@ -70,7 +70,7 @@ function getResults(input) {
     div += '</div></div>';
     results.innerHTML += div;    
     for (var i = 0; i < 4; i++) {
-        if (input.charAt(i) != answer.value.charAt(i)) {
+        if (input.charAt(i) !== answer.value.charAt(i)) {
             return false;
         }
     }
