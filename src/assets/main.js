@@ -12,14 +12,15 @@ function guess() {
         return false;
     }
     if(validateInput(input.value)) {
-        attempt++;
+        attempt+=1;
     }
-    if (getResults(input.value)) {
+    let check = getResults(input.value);
+    if (check) {
         setMessage('You Win! :)');
         showAnswer(true);
         showReplay();
     }
-    if (!getResults(input.value) && attempt.value >= 10) {
+    if (!(check) && attempt.value >= 10) {
         setMessage('You Lose! :(');
         showAnswer(false);
         showReplay();
@@ -79,7 +80,7 @@ function getResults(input) {
 
 function showAnswer(hasWon) {
     let code = document.getElementById('code');
-    code.innerHTML = '<strong>' + answer.value + '</strong>';
+    code.innerHTML =  answer.value;
     if (hasWon === true) {
         code.className += ' success';
     }
@@ -92,6 +93,6 @@ function showReplay() {
     let guessingDiv = document.getElementById('guessing-div');
     let replayDiv = document.getElementById('replay-div');
 
-    guessingDiv.style = 'display: none';
-    replayDiv.style = 'display: block';
+    guessingDiv.style.display='none'
+    replayDiv.style.display= 'block';
 }
