@@ -5,7 +5,7 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
-    if (answer == ''|| attempt=='' ){
+    if (answer.value ===''|| attempt.value=='' ){
         setHiddenFields();
     }
     if (!(validateInput(input.value))) {
@@ -19,7 +19,7 @@ function guess() {
         showAnswer(true);
         showReplay();
     }
-    if (!getResults(input.value) && attempt >= 10) {
+    if (!getResults(input.value) && attempt.value >= 10) {
         setMessage('You Lose! :(');
         showAnswer(false);
         showReplay();
@@ -30,13 +30,13 @@ function guess() {
 }
 
 function setHiddenFields() {
-    answer = Math.floor(Math.random() * 9999);
-    answer = Number.toString(answer);
-    attempt = 0;
-    while (answer.length < 4) {
-        answer = 0 + answer;
+    answer.value = Math.floor(Math.random() * 9999);
+    answer.value = Number.toString(answer.value);
+    attempt.value = 0;
+    while (answer.value.length < 4) {
+        answer.value = '0' + answer.value;
     }
-    return answer;
+   
 }
 
 function setMessage(text) {
@@ -59,8 +59,8 @@ function getResults(input) {
         if (input.charAt(i) == answer.charAt(i)) {
             div += '<span class="glyphicon glyphicon-ok"></span>';
         }       
-        else if (input.charAt(i) == answer.charAt((i + 1) % 4) || input.charAt(i) == answer.charAt((i + 2) % 4)
-            || input.charAt(i) == answer.charAt((i + 3) % 4)) {
+        else if (input.charAt(i) == answer.value.charAt((i + 1) % 4) || input.charAt(i) == answer.value.charAt((i + 2) % 4)
+            || input.charAt(i) == answer.value.charAt((i + 3) % 4)) {
             div += '<span class="glyphicon glyphicon-transfer"></span>';
         }
         else {
@@ -71,16 +71,16 @@ function getResults(input) {
     div += '</div></div>';
     results.innerHTML += div;    
     for (var i = 0; i < 4; i++) {
-        if (input.charAt(i) != answer.charAt(i)) {
+        if (input.charAt(i) != answer.value.charAt(i)) {
             return false;
         }
     }
-
+    return true;
 }
 
 function showAnswer(hasWon) {
     let code = document.getElementById('code');
-    code.innerHTML = '<strong>' + answer + '</strong>';
+    code.innerHTML = '<strong>' + answer.value + '</strong>';
     if (hasWon === true) {
         code.className += ' success';
     }
