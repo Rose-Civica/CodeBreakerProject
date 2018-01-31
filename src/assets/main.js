@@ -20,7 +20,7 @@ function guess() {
         showAnswer(true);
         showReplay();
     }
-    if (!(check) && attempt.value >= 10) {
+    else if (!(check) && attempt.value >= 10) {
         setMessage('You Lose! :(');
         showAnswer(false);
         showReplay();
